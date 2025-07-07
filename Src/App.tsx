@@ -1,21 +1,29 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import { NewAppScreen } from '@react-native/new-app-screen';
 import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { useContext } from 'react';
+import { AuthContext } from './Context/AppwriteContext';
+import { AuthProvider } from './Context/AppwriteContext';
+import AuthStack from './Routes/AuthStack';
+import AppStack from './Routes/AppStack';
+
+
+const AppInner = () => {
+  const { isLoggedIn } = useContext(AuthContext);
+
+  return (
+    <NavigationContainer>
+      {isLoggedIn ? <AppStack /> : <AuthStack />}
+    </NavigationContainer>
+  );
+};
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+    <AuthProvider>
+      <AppInner />
+    </AuthProvider>
   );
 }
 

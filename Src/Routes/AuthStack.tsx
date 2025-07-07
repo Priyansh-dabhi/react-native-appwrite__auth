@@ -2,8 +2,8 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 //navigation
-import Signup from '../screens/Signup'
-import Login from '../screens/Login'
+import Signup from '../Screens/Signup'
+import Login from '../Screens/Login'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 export type AuthStackParamList = {
